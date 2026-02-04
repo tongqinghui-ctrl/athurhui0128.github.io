@@ -1,0 +1,759 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI专家观点 - 全球顶尖AI领域专家的最新技术趋势观点</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc',
+                        secondary: '#00aaff',
+                        dark: '#001a33',
+                        light: '#e6f7ff',
+                        accent: '#00ccff'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(to right, #0066cc, #00ccff);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 102, 204, 0.1), 0 10px 10px -5px rgba(0, 102, 204, 0.04);
+            }
+            .nav-link {
+                position: relative;
+            }
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 0;
+                background-color: #00ccff;
+                transition: width 0.3s ease;
+            }
+            .nav-link:hover::after {
+                width: 100%;
+            }
+            .active-nav::after {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                        <i class="fa fa-brain text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-dark">AI<span class="text-primary">Insights</span></span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active-nav text-dark hover:text-primary font-medium">首页</a>
+                    <a href="#experts" class="nav-link text-dark hover:text-primary font-medium">专家观点</a>
+                    <a href="#trends" class="nav-link text-dark hover:text-primary font-medium">趋势分析</a>
+                    <a href="#about" class="nav-link text-dark hover:text-primary font-medium">关于我们</a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-dark focus:outline-none">
+                        <i class="fa fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+                <a href="#home" class="block py-2 text-dark hover:text-primary font-medium">首页</a>
+                <a href="#experts" class="block py-2 text-dark hover:text-primary font-medium">专家观点</a>
+                <a href="#trends" class="block py-2 text-dark hover:text-primary font-medium">趋势分析</a>
+                <a href="#about" class="block py-2 text-dark hover:text-primary font-medium">关于我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-cover bg-center" style="background-image: url('https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/434c4f001abb4605a48abc2ca25e698b~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=2026020312453213722780A70D7D4611ED&amp;rrcfp=f06b921b&amp;x-expires=1772685985&amp;x-signature=OnA9km%2BkA4z8KD3axhdQPw53hhw%3D');">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow">
+                    汇聚全球AI领域权威观点
+                </h1>
+                <p class="text-xl md:text-2xl text-white mb-8 text-shadow">
+                    探索人工智能前沿技术趋势，聆听行业领袖深度洞察
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#experts" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                        浏览专家观点
+                    </a>
+                    <a href="#trends" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg hover:bg-white hover:text-primary">
+                        查看技术趋势
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 搜索和筛选区域 -->
+    <section class="py-8 bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow">
+                        <div class="relative">
+                            <input type="text" id="search-input" placeholder="搜索专家观点、技术趋势..." class="w-full py-3 px-4 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <button id="search-button" class="absolute right-3 top-3 text-gray-400 hover:text-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex gap-2">
+                        <select id="expert-filter" class="py-3 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                            <option value="">所有专家</option>
+                            <option value="Geoffrey Hinton">Geoffrey Hinton</option>
+                            <option value="Yann LeCun">Yann LeCun</option>
+                            <option value="Andrew Ng">Andrew Ng</option>
+                            <option value="Ilya Sutskever">Ilya Sutskever</option>
+                        </select>
+                        <select id="topic-filter" class="py-3 px-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white">
+                            <option value="">所有主题</option>
+                            <option value="AGI">AGI</option>
+                            <option value="大模型">大模型</option>
+                            <option value="世界模型">世界模型</option>
+                            <option value="AI安全">AI安全</option>
+                            <option value="深度学习">深度学习</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专家观点区域 -->
+    <section id="experts" class="py-12 md:py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">AI领域顶尖专家观点</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    来自全球AI领域最具影响力的专家学者，分享他们对技术发展的深度思考和前瞻性见解
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="opinions-container">
+                <!-- 观点卡片将通过JavaScript动态生成 -->
+            </div>
+
+            <!-- 加载更多按钮 -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-white hover:bg-gray-100 text-primary font-bold py-3 px-6 rounded-lg border border-primary transition duration-300 ease-in-out transform hover:-translate-y-1">
+                    加载更多观点
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 趋势分析区域 -->
+    <section id="trends" class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">AI技术趋势分析</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    基于专家观点的数据分析，揭示AI技术发展的关键趋势和未来方向
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 趋势图表 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">AI技术热点分布</h3>
+                    <div class="h-80">
+                        <canvas id="topicsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 趋势时间线 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">AI技术发展时间线</h3>
+                    <div class="relative">
+                        <div class="absolute left-0 md:left-1/2 h-full w-0.5 bg-gray-200"></div>
+                        <div id="timeline-container">
+                            <!-- 时间线内容将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 观点聚类分析 -->
+            <div class="mt-12 bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-bold mb-6">AI专家观点聚类分析</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="clusters-container">
+                    <!-- 聚类内容将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-12 md:py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">关于我们</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    AI Insights 致力于汇聚全球AI领域顶尖专家的观点和洞见，为AI从业者、研究人员和爱好者提供高质量的知识内容，助力大家把握AI技术发展的前沿趋势。
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-primary hover:text-blue-700">
+                        <i class="fa fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:text-blue-700">
+                        <i class="fa fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:text-blue-700">
+                        <i class="fa fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-primary hover:text-blue-700">
+                        <i class="fa fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
+                            <i class="fa fa-brain text-white text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold">AI<span class="text-primary">Insights</span></span>
+                    </div>
+                    <p class="text-gray-400">
+                        汇聚全球AI领域权威观点，探索人工智能前沿技术趋势
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white">首页</a></li>
+                        <li><a href="#experts" class="text-gray-400 hover:text-white">专家观点</a></li>
+                        <li><a href="#trends" class="text-gray-400 hover:text-white">趋势分析</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">关于我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">订阅更新</h4>
+                    <p class="text-gray-400 mb-4">
+                        订阅我们的通讯，获取最新的AI专家观点和技术趋势
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="您的邮箱地址" class="py-2 px-4 rounded-l-lg focus:outline-none flex-grow">
+                        <button class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg">
+                            订阅
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-500">
+                <p>© 2026 AI Insights. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 专家数据
+        const experts = [
+            {
+                id: 1,
+                name: "Geoffrey Hinton",
+                title: "AI教父、多伦多大学名誉教授",
+                avatar: "https://p26-doubao-search-sign.byteimg.com/labis/9c6360927e7b49c9c395106e0dee74a8~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785645947&x-signature=x7aypVT9qAKFJ%2F629uKqNseJKvc%3D",
+                bio: "Geoffrey Hinton是深度学习领域的先驱，被称为'AI教父'，2018年图灵奖得主。他的研究为现代人工智能奠定了基础。"
+            },
+            {
+                id: 2,
+                name: "Yann LeCun",
+                title: "图灵奖得主、前Meta首席科学家",
+                avatar: "https://p3-doubao-search-sign.byteimg.com/labis/8cb692b4febf340837e139ba185cc0cf~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785645947&x-signature=%2Bm6c9wn%2Fg2VcS%2BYwoC3QfUvgsMc%3D",
+                bio: "Yann LeCun是卷积神经网络(CNN)的发明者之一，图灵奖得主，曾任Meta首席科学家，现任AMI Labs创始人，致力于'世界模型'研究。"
+            },
+            {
+                id: 3,
+                name: "Andrew Ng",
+                title: "DeepLearning.AI创始人、斯坦福大学兼职教授",
+                avatar: "https://p11-doubao-search-sign.byteimg.com/labis/image/081dd332876278b7d917a5d44bb201d3~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785645947&x-signature=DdBio4eFcnLzIDDKdx5BWFvHRy4%3D",
+                bio: "Andrew Ng是人工智能和机器学习领域的知名专家，DeepLearning.AI创始人，Coursera联合创始人，Google Brain创建者。"
+            },
+            {
+                id: 4,
+                name: "Ilya Sutskever",
+                title: "OpenAI联合创始人、前首席科学家",
+                avatar: "https://p3-doubao-search-sign.byteimg.com/labis/0c2c49b9e2f5331b4c29494ba095e2f8~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1785645947&x-signature=oFkS5ctNexOaibACeI1cHIcYOng%3D",
+                bio: "Ilya Sutskever是OpenAI的联合创始人之一，前首席科学家，AlexNet和GPT-3等基础论文的合著者，对深度学习领域做出了多项重大贡献。"
+            }
+        ];
+
+        // 观点数据
+        const opinions = [
+            {
+                id: 1,
+                expert_id: 1,
+                title: "大型语言模型存在严重的安全隐患",
+                content: "大型语言模型存在严重的安全隐患，它们可能会被滥用，带来不可预测的风险。我们需要认真思考如何安全地发展AI技术，确保它造福人类而不是带来危害。",
+                date: "2026-01-15",
+                topics: ["AI安全", "大模型", "AGI"],
+                source: "MIT Technology Review访谈"
+            },
+            {
+                id: 2,
+                expert_id: 1,
+                title: "从规模化时代迈向研究时代",
+                content: "2020-2025年是AI的'规模化时代'，核心逻辑是通过扩大数据、参数、算力规模提升模型性能。但当前数据存在明确上限，单纯100倍规模提升无法实现AI能力的质变，规模化红利逐渐见顶。AI领域已回归'研究时代'，关键不再是'堆砌资源'，而是探索新的技术范式。",
+                date: "2026-02-01",
+                topics: ["大模型", "深度学习", "AGI"],
+                source: "Dwarkesh Patel访谈"
+            },
+            {
+                id: 3,
+                expert_id: 2,
+                title: "LLM路线存在根本局限性",
+                content: "真实世界数据是连续的、高维的、强噪声的时间序列，与离散、结构化的语言数据根本不同，因此不能被当作语言问题来解决。即使LLM能通过律师资格考试、能做数学、能写代码——但它们并不真正理解现实世界。",
+                date: "2026-01-26",
+                topics: ["大模型", "世界模型", "深度学习"],
+                source: "AI House Davos采访"
+            },
+            {
+                id: 4,
+                expert_id: 2,
+                title: "世界模型是AI的未来方向",
+                content: "我们需要构建'世界模型'这一全新的AI系统，它应该具备4类核心能力:(1)理解真实世界;(2)拥有持久记忆;(3)能够推理与规划;(4)具备可控性与安全性。基于自监督学习、通过预测下一个token来训练的生成式架构，在语言理解与生成方面取得了惊人的成功，但这一路径无法套用到真实世界的感知数据上。",
+                date: "2026-01-26",
+                topics: ["世界模型", "AGI", "深度学习"],
+                source: "AMI Labs官网"
+            },
+            {
+                id: 5,
+                expert_id: 3,
+                title: "2026年能实现AGI吗？",
+                content: "我提出了一个新的测试框架'Turing-AGI Test'（图灵-AGI测试）。测试的设计思路是：让测试对象，无论是AI系统还是人类专业人士，坐在一台可以联网、装有浏览器和Zoom等常用软件的电脑前。裁判会设计一个持续数天的工作体验，比如先培训测试对象成为一名客服人员，然后让他接听真实的客户来电，期间提供持续的反馈。如果AI能够像一位熟练的人类员工那样完成这些工作任务，它就通过了测试。",
+                date: "2026-01-08",
+                topics: ["AGI", "大模型"],
+                source: "The Batch新年特刊"
+            },
+            {
+                id: 6,
+                expert_id: 3,
+                title: "AI Agents代表人工智能的未来发展方向",
+                content: "AI Agents代表了人工智能的未来发展方向。输入Prompt让大模型生成文章，就像让一个人写作，但不能用回退键（删除修改）。AI Agents的工作方式跟人类更相像。如果你在GPT-3.5的基础上建立一个AI智能体的工作流，它甚至能比GPT-4做得更好。换句话说，如果我们现在基于GPT-4做一个AI智能体的工作流，甚至可以提前到达GPT-5的水平。",
+                date: "2026-01-12",
+                topics: ["AGI", "大模型", "深度学习"],
+                source: "红杉资本AI Ascent活动演讲"
+            },
+            {
+                id: 7,
+                expert_id: 4,
+                title: "AI当前核心痛点：泛化能力与学习效率不足",
+                content: "AI模型在特定评估任务（如编程竞赛）中表现卓越，但在真实场景中泛化能力远逊于人类。例如模型修复代码时可能反复引入新bug，本质是训练数据过度聚焦于评估指标，导致'为了分数而优化'，而非真正掌握核心能力。人类凭借少量数据即可实现深度学习（如青少年10小时就能学会开车），但AI需要海量数据和算力才能达到类似效果。",
+                date: "2026-02-01",
+                topics: ["深度学习", "大模型", "AGI"],
+                source: "Dwarkesh Patel访谈"
+            },
+            {
+                id: 8,
+                expert_id: 4,
+                title: "未来AI发展方向：持续学习与渐进式部署",
+                content: "超级智能并非'能做所有工作的完美模型'，而是'能快速学习所有工作的通用学习体'——类似'超级15岁少年'，虽初始知识有限，但具备极致学习能力，可通过部署后的持续学习适配各类场景。未来AI的价值将通过'部署-试错-迭代'的持续学习过程实现，而非依赖预训练阶段的一次性优化。",
+                date: "2026-02-01",
+                topics: ["AGI", "深度学习", "AI安全"],
+                source: "Dwarkesh Patel访谈"
+            }
+        ];
+
+        // 趋势数据
+        const trends = [
+            {
+                id: 1,
+                title: "从'拼规模'转向'拼密度'",
+                description: "AI发展从'拼规模'转向'拼密度'，精炼高效成为大模型演进的核心逻辑之一。中国信息通信研究院副院长魏亮认为，行业已不再单纯依靠提升参数规模实现性能突破，精细化机制、算法架构、训练方法的优化成为主要提升方向。",
+                date: "2026-01-28",
+                source: "新华社"
+            },
+            {
+                id: 2,
+                title: "智能体AI加速演进",
+                description: "人工智能正向智能体AI加速演进。智能体AI能够像人一样设定任务、规划实现路径、试错反馈，具有自主性、能举一反三和长期记忆三个特征。如果说聊天机器人是'会说话的字典'，智能体AI就是'能自主干活的管家'。",
+                date: "2026-01-28",
+                source: "新华社"
+            },
+            {
+                id: 3,
+                title: "世界模型成为新热点",
+                description: "构建连接AI与现实世界的基础模型，已经成为AI领域最令人兴奋的研究方向之一。无论是否拥有成熟产品，都吸引了一大批顶尖科学家和资金雄厚的投资者。Yann LeCun的AMI Labs和李飞飞的World Labs都在这一领域展开布局。",
+                date: "2026-01-26",
+                source: "51CTO"
+            },
+            {
+                id: 4,
+                title: "开源AI生态崛起",
+                description: "IBM研究院AI模型副总裁大卫·考克斯（David Cox）的期望是开源AI能够最终获胜。他将当前的局面与1990年代Linux挑战微软的历史相类比，认为某些玩家正在试图拥有和控制AI，做法与当年微软向发展中市场倾销免费Windows如出一辙。",
+                date: "2026-01-08",
+                source: "MIT Technology Review"
+            }
+        ];
+
+        // 聚类分析数据
+        const clusters = [
+            {
+                id: 1,
+                title: "大模型局限性反思",
+                description: "多位专家对当前大语言模型的局限性提出了深刻反思，包括泛化能力不足、缺乏真正理解、存在幻觉等问题。",
+                experts: ["Geoffrey Hinton", "Yann LeCun", "Ilya Sutskever"],
+                color: "bg-blue-100 border-blue-400"
+            },
+            {
+                id: 2,
+                title: "世界模型与物理智能",
+                description: "构建能够理解物理世界的AI系统成为新热点，Yann LeCun的JEPA架构和世界模型概念引领了这一方向。",
+                experts: ["Yann LeCun", "Ilya Sutskever"],
+                color: "bg-green-100 border-green-400"
+            },
+            {
+                id: 3,
+                title: "AGI测试与评估",
+                description: "如何定义和测试AGI成为重要议题，Andrew Ng提出的Turing-AGI测试框架引发广泛讨论。",
+                experts: ["Andrew Ng", "Geoffrey Hinton"],
+                color: "bg-purple-100 border-purple-400"
+            },
+            {
+                id: 4,
+                title: "AI安全与伦理",
+                description: "随着AI能力的提升，安全与伦理问题日益凸显，专家们呼吁建立更严格的监管框架和安全标准。",
+                experts: ["Geoffrey Hinton", "Ilya Sutskever"],
+                color: "bg-red-100 border-red-400"
+            },
+            {
+                id: 5,
+                title: "智能体与自主学习",
+                description: "AI智能体和持续学习成为新的发展方向，强调AI系统应该具备自主学习和适应能力。",
+                experts: ["Andrew Ng", "Ilya Sutskever"],
+                color: "bg-yellow-100 border-yellow-400"
+            },
+            {
+                id: 6,
+                title: "开源与商业化平衡",
+                description: "AI领域的开源与商业化之争持续升温，专家们对开源模型的未来发展持不同观点。",
+                experts: ["Andrew Ng", "Yann LeCun"],
+                color: "bg-indigo-100 border-indigo-400"
+            }
+        ];
+
+        // 主题分布数据
+        const topicsData = {
+            labels: ['AGI', '大模型', '世界模型', 'AI安全', '深度学习', '智能体', '开源AI'],
+            datasets: [{
+                label: '专家提及频率',
+                data: [65, 80, 45, 40, 70, 35, 30],
+                backgroundColor: [
+                    'rgba(0, 102, 204, 0.7)',
+                    'rgba(0, 170, 255, 0.7)',
+                    'rgba(0, 204, 102, 0.7)',
+                    'rgba(255, 102, 102, 0.7)',
+                    'rgba(153, 102, 255, 0.7)',
+                    'rgba(255, 204, 0, 0.7)',
+                    'rgba(102, 204, 255, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(0, 102, 204, 1)',
+                    'rgba(0, 170, 255, 1)',
+                    'rgba(0, 204, 102, 1)',
+                    'rgba(255, 102, 102, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 204, 0, 1)',
+                    'rgba(102, 204, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // DOM加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 移动端菜单切换
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 渲染专家观点卡片
+            renderOpinions(opinions);
+
+            // 渲染时间线
+            renderTimeline(trends);
+
+            // 渲染聚类分析
+            renderClusters(clusters);
+
+            // 初始化主题分布图表
+            initTopicsChart();
+
+            // 搜索和筛选功能
+            setupSearchAndFilter();
+
+            // 加载更多按钮
+            setupLoadMore();
+
+            // 导航链接高亮
+            setupNavHighlight();
+        });
+
+        // 渲染专家观点卡片
+        function renderOpinions(opinionsToRender) {
+            const container = document.getElementById('opinions-container');
+            container.innerHTML = '';
+
+            opinionsToRender.forEach(opinion => {
+                const expert = experts.find(e => e.id === opinion.expert_id);
+                
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-lg overflow-hidden card-hover';
+                
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="${expert.avatar}" alt="${expert.name}" class="w-12 h-12 rounded-full object-cover">
+                            <div class="ml-4">
+                                <h3 class="font-bold text-lg">${expert.name}</h3>
+                                <p class="text-gray-600 text-sm">${expert.title}</p>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-xl mb-3">${opinion.title}</h4>
+                        <p class="text-gray-700 mb-4">${opinion.content}</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            ${opinion.topics.map(topic => `
+                                <span class="bg-blue-100 text-primary text-xs px-3 py-1 rounded-full">${topic}</span>
+                            `).join('')}
+                        </div>
+                        <div class="flex justify-between items-center text-gray-500 text-sm">
+                            <span>${opinion.date}</span>
+                            <span>${opinion.source}</span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // 渲染时间线
+        function renderTimeline(trends) {
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+
+            trends.forEach((trend, index) => {
+                const isEven = index % 2 === 0;
+                const item = document.createElement('div');
+                item.className = `relative mb-8 flex ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`;
+                
+                item.innerHTML = `
+                    <div class="flex-1 ${isEven ? 'md:text-right md:pr-8' : 'md:text-left md:pl-8'}">
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <span class="text-primary font-bold">${trend.date}</span>
+                            <h4 class="font-bold text-lg mt-1 mb-2">${trend.title}</h4>
+                            <p class="text-gray-700">${trend.description}</p>
+                            <p class="text-gray-500 text-sm mt-2">${trend.source}</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 transform -translate-x-1/2 md:-translate-x-0 mt-4">
+                        <div class="w-4 h-4 rounded-full bg-primary border-4 border-white"></div>
+                    </div>
+                    <div class="flex-1"></div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+
+        // 渲染聚类分析
+        function renderClusters(clusters) {
+            const container = document.getElementById('clusters-container');
+            container.innerHTML = '';
+
+            clusters.forEach(cluster => {
+                const item = document.createElement('div');
+                item.className = `rounded-lg border ${cluster.color} p-5`;
+                
+                item.innerHTML = `
+                    <h4 class="font-bold text-lg mb-3">${cluster.title}</h4>
+                    <p class="text-gray-700 mb-4">${cluster.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${cluster.experts.map(expert => `
+                            <span class="bg-white text-gray-800 text-xs px-3 py-1 rounded-full">${expert}</span>
+                        `).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+
+        // 初始化主题分布图表
+        function initTopicsChart() {
+            const ctx = document.getElementById('topicsChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: topicsData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        title: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        }
+
+        // 设置搜索和筛选功能
+        function setupSearchAndFilter() {
+            const searchInput = document.getElementById('search-input');
+            const expertFilter = document.getElementById('expert-filter');
+            const topicFilter = document.getElementById('topic-filter');
+            const searchButton = document.getElementById('search-button');
+
+            function filterOpinions() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedExpert = expertFilter.value;
+                const selectedTopic = topicFilter.value;
+
+                let filteredOpinions = opinions;
+
+                // 按搜索词筛选
+                if (searchTerm) {
+                    filteredOpinions = filteredOpinions.filter(opinion => 
+                        opinion.title.toLowerCase().includes(searchTerm) || 
+                        opinion.content.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                // 按专家筛选
+                if (selectedExpert) {
+                    const expert = experts.find(e => e.name === selectedExpert);
+                    if (expert) {
+                        filteredOpinions = filteredOpinions.filter(opinion => opinion.expert_id === expert.id);
+                    }
+                }
+
+                // 按主题筛选
+                if (selectedTopic) {
+                    filteredOpinions = filteredOpinions.filter(opinion => 
+                        opinion.topics.includes(selectedTopic)
+                    );
+                }
+
+                renderOpinions(filteredOpinions);
+            }
+
+            searchButton.addEventListener('click', filterOpinions);
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    filterOpinions();
+                }
+            });
+            expertFilter.addEventListener('change', filterOpinions);
+            topicFilter.addEventListener('change', filterOpinions);
+        }
+
+        // 设置加载更多按钮
+        function setupLoadMore() {
+            const loadMoreButton = document.getElementById('load-more');
+            let currentPage = 1;
+            const itemsPerPage = 6;
+
+            loadMoreButton.addEventListener('click', function() {
+                currentPage++;
+                const startIndex = 0;
+                const endIndex = currentPage * itemsPerPage;
+                const paginatedOpinions = opinions.slice(startIndex, endIndex);
+                
+                if (paginatedOpinions.length < opinions.length) {
+                    renderOpinions(paginatedOpinions);
+                } else {
+                    renderOpinions(opinions);
+                    loadMoreButton.textContent = '没有更多内容';
+                    loadMoreButton.disabled = true;
+                    loadMoreButton.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        }
+
+        // 设置导航链接高亮
+        function setupNavHighlight() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+
+            window.addEventListener('scroll', function() {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active-nav');
+                    }
+                });
+            });
+        }
+    </script>
+
+</body></html>
